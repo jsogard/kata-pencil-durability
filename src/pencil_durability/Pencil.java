@@ -1,14 +1,6 @@
 package pencil_durability;
 
 public class Pencil {
-	
-	private static int UppercaseWriteCost = 2;
-	private static int LowercaseWriteCost = 1;
-	private static int WhitespaceWriteCost = 0;
-	
-	private static int UppercaseEraseCost = 2;
-	private static int LowercaseEraseCost = 1;
-	private static int WhitespaceEraseCost = 0;
 
 	private int pointDurabilityReset = 100;
 	private int pointDurability;

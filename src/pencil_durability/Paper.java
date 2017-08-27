@@ -9,15 +9,15 @@ public class Paper {
 	}
 	
 	public boolean write(String text, Pencil pencil){
-		int i = 0, cost;
+		int i = 0;
 		char c;
 		while(pencil.getPointDurability() > 0 && i < text.length()){
 			c = text.charAt(i);
-			
-			
-			this.text += text.charAt(i);
-			
+			if(pencil.erodePoint( CharacterCost.getWriteCost(c) ))
+				this.text += c;
+			else
+				return false;
 		}
-		// TODO say something if tip breaks
+		return true;
 	}
 }
