@@ -1,6 +1,14 @@
 package pencil_durability;
 
 public class Pencil {
+	
+	private static int UppercaseWriteCost = 2;
+	private static int LowercaseWriteCost = 1;
+	private static int WhitespaceWriteCost = 0;
+	
+	private static int UppercaseEraseCost = 2;
+	private static int LowercaseEraseCost = 1;
+	private static int WhitespaceEraseCost = 0;
 
 	private int pointDurabilityReset = 100;
 	private int pointDurability;
@@ -32,12 +40,22 @@ public class Pencil {
 		return eraserDurability;
 	}
 	
-	public void erodePoint(){
-		pointDurability--;
+	public boolean erodePoint(int cost){
+		pointDurability -= cost;
+		if(pointDurability < 0){
+			pointDurability = 0;
+			return false;
+		}
+		return true;
 	}
 	
-	public void erodeEraser(){
-		eraserDurability--;
+	public boolean erodeEraser(int cost){
+		eraserDurability -= cost;
+		if(eraserDurability < 0){
+			eraserDurability = 0;
+			return false;
+		}
+		return true;
 	}
 	
 	public void sharpen(){
