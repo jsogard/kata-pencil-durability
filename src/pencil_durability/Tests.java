@@ -58,6 +58,7 @@ public class Tests {
 		Assert.assertEquals(initialString, paper.getText());
 	}
 	
+	
 	/* ERASE TESTS */
 	
 	@Test
@@ -141,8 +142,8 @@ public class Tests {
 		
 		test_write();
 		String ogText = paper.getText();
-		Assert.assertTrue(paper.edit("overflow", ogText.length()*2, pencil));
-		Assert.assertEquals(ogText + "overflow", paper.getText());
+		Assert.assertFalse(paper.edit("overflow", ogText.length(), pencil));
+		Assert.assertEquals(ogText, paper.getText());
 	}
 	
 	@Test
@@ -156,8 +157,8 @@ public class Tests {
 	public void test_editEmptyText(){
 		
 		String writeString = "No longer an empty string";
-		Assert.assertTrue(paper.edit(writeString, 0, pencil));
-		Assert.assertEquals(writeString, paper.getText());
+		Assert.assertFalse(paper.edit(writeString, 0, pencil));
+		Assert.assertEquals("", paper.getText());
 	}
 	
 	/* RESHARPEN TESTS */

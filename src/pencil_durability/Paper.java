@@ -15,7 +15,7 @@ public class Paper {
 	public boolean write(String text, Pencil pencil){
 		int i = 0;
 		char c;
-		while(pencil.getPointDurability() > 0 && i < text.length()){
+		while(i < text.length()){
 			c = text.charAt(i++);
 			if(pencil.erodePoint( CharacterCost.getWriteCost(c) ))
 				this.text += c;
@@ -45,7 +45,7 @@ public class Paper {
 	}
 	
 	public boolean edit(String text, int index, Pencil pencil){
-		if(index < 0) return false;
+		if(index < 0 || index >= this.text.length()) return false;
 		char[] cstring = this.text.toCharArray();
 		String overflow = null;
 		int i = 0;
@@ -54,7 +54,7 @@ public class Paper {
 		if(index + text.length() > this.text.length())
 			overflow = text.substring(this.text.length() - index);
 		
-		while(pencil.getPointDurability() > 0 && index < this.text.length() && i < text.length()){
+		while(index < this.text.length() && i < text.length()){
 			
 			write_c = text.charAt(i);
 			if(pencil.erodePoint( CharacterCost.getWriteCost(write_c) )){
