@@ -31,6 +31,14 @@ public class Tests {
 	}
 	
 	@Test
+	public void test_writeCost(){
+		
+		int initialPointDurability = pencil.getPointDurability();
+		test_write();
+		Assert.assertEquals(CharacterCost.getWriteCost(baseTestString), initialPointDurability - pencil.getPointDurability());
+	}
+	
+	@Test
 	public void test_writeBreakPoint(){
 		
 		String breakString = "";
@@ -58,6 +66,16 @@ public class Tests {
 		test_write();
 		Assert.assertTrue(paper.erase("test", pencil));
 		Assert.assertEquals("This is a      string", paper.getText());
+	}
+	
+	@Test
+	public void test_eraseCost(){
+		
+		int initialEraserDurability = pencil.getEraserDurability();
+		test_write();
+		String eraseString = "This ";
+		paper.erase(eraseString, pencil);
+		Assert.assertEquals(CharacterCost.getEraseCost(eraseString), initialEraserDurability - pencil.getEraserDurability());
 	}
 	
 	@Test
@@ -107,6 +125,39 @@ public class Tests {
 		test_write();
 		Assert.assertTrue(paper.edit("edit", 10, pencil));
 		Assert.assertEquals("This is a @@@t string", paper.getText());
+	}
+	
+	@Test
+	public void test_editOverflow(){
+		
+		test_write();
+		int ogLength = paper.getText().length();
+		Assert.assertTrue(paper.edit("overflow", ogLength-1, pencil));
+		Assert.assertEquals("verflow", paper.getText().substring(ogLength));
+	}
+	
+	@Test
+	public void test_editOutOfBoundsPositive(){
+		
+		test_write();
+		String ogText = paper.getText();
+		Assert.assertTrue(paper.edit("overflow", ogText.length()*2, pencil));
+		Assert.assertEquals(ogText + "overflow", paper.getText());
+	}
+	
+	@Test
+	public void test_editOutOfBoundsNegative(){
+		
+		test_write();
+		Assert.assertFalse(paper.edit("OutOfBounds", -1, pencil));
+	}
+	
+	@Test
+	public void test_editEmptyText(){
+		
+		String writeString = "No longer an empty string";
+		Assert.assertTrue(paper.edit(writeString, 0, pencil));
+		Assert.assertEquals(writeString, paper.getText());
 	}
 	
 	/* RESHARPEN TESTS */

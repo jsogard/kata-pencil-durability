@@ -45,6 +45,7 @@ public class Paper {
 	}
 	
 	public boolean edit(String text, int index, Pencil pencil){
+		if(index < 0) return false;
 		char[] cstring = this.text.toCharArray();
 		String overflow = null;
 		int i = 0;
