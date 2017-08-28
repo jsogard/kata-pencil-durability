@@ -25,6 +25,23 @@ public class Paper {
 		return true;
 	}
 	
-	public boolean erase()
+	public boolean erase(String text, Pencil pencil){
+		int lastIndex = this.text.lastIndexOf(text);
+		if(lastIndex == -1) return false;
+		
+		char[] cstring = text.toCharArray();
+		for(int i = lastIndex + text.length(); i >= lastIndex; i--){
+			
+			if(pencil.erodeEraser( CharacterCost.getEraseCost(cstring[i]) ))
+				cstring[i] = ' ';
+			else {
+				this.text = new String(cstring);
+				return false;
+			}
+		}
+		
+		this.text = new String(cstring);
+		return true;
+	}
 	
 }
