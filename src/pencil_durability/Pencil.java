@@ -6,18 +6,14 @@ public class Pencil {
 	private int pointDurability;
 	
 	private int eraserDurability = 100;
+	private int length = 10;
 	
 	
-	
-	public Pencil(int initialPointDurability, int initialEraserDurability){
+	public Pencil(int initialPointDurability, int initialEraserDurability, int length){
 		pointDurabilityReset = initialPointDurability;
 		pointDurability = initialPointDurability;
 		eraserDurability = initialEraserDurability;
-	}
-	
-	public Pencil(int initialPointDurability){
-		pointDurabilityReset = initialPointDurability;
-		pointDurability = pointDurabilityReset;
+		this.length = length;
 	}
 	
 	public Pencil(){
@@ -30,6 +26,10 @@ public class Pencil {
 
 	public int getEraserDurability() {
 		return eraserDurability;
+	}
+	
+	public int getLength() {
+		return length;
 	}
 	
 	public boolean erodePoint(int cost){
@@ -50,8 +50,11 @@ public class Pencil {
 		return true;
 	}
 	
-	public void sharpen(){
+	public boolean sharpen(){
+		if(length == 0) return false;
 		pointDurability = pointDurabilityReset;
+		length--;
+		return true;
 	}
 	
 }

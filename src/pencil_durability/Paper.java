@@ -8,6 +8,10 @@ public class Paper {
 		text = "";
 	}
 	
+	public String getText(){
+		return text;
+	}
+	
 	public boolean write(String text, Pencil pencil){
 		int i = 0;
 		char c;
@@ -20,4 +24,7 @@ public class Paper {
 		}
 		return true;
 	}
+	
+	public boolean erase()
+	
 }
