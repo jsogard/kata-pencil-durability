@@ -53,7 +53,7 @@ public class Paper {
 		if(index + text.length() > this.text.length())
 			overflow = text.substring(this.text.length() - index);
 		
-		while(pencil.getPointDurability() > 0 && index < this.text.length()){
+		while(pencil.getPointDurability() > 0 && index < this.text.length() && i < text.length()){
 			
 			write_c = text.charAt(i);
 			if(pencil.erodePoint( CharacterCost.getWriteCost(write_c) )){
