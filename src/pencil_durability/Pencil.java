@@ -2,11 +2,11 @@ package pencil_durability;
 
 public class Pencil {
 
-	private int pointDurabilityReset = 100;
+	private int pointDurabilityReset;
 	private int pointDurability;
 	
-	private int eraserDurability = 100;
-	private int length = 10;
+	private int eraserDurability;
+	private int length;
 	
 	
 	public Pencil(int initialPointDurability, int initialEraserDurability, int length){
@@ -17,7 +17,10 @@ public class Pencil {
 	}
 	
 	public Pencil(){
+		pointDurabilityReset = 100;
 		pointDurability = pointDurabilityReset;
+		eraserDurability = 100;
+		length = 10;
 	}
 
 	public int getPointDurability() {
