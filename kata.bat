@@ -1,0 +1,1 @@
+java -jar kata-pencil-durability.jar
