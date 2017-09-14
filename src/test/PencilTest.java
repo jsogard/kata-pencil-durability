@@ -4,13 +4,28 @@ import main.*;
 import static org.junit.Assert.*;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class PencilTest {
 
-	int initialPointDurability;
 	Pencil pencil;
+	int initialPointDurability 	= 200;
+	int initialLength 			= 10;
+	int initialEraserDurability = 100;
+	
 	Paper paper;
+	
+	/**
+	 * When a pencil is created, it can be provided with a value for point durability
+	 * A pencil should also be created with an initial length value
+	 * When a pencil is created, it can be provided with a value for eraser durability
+	 */
+	@Before
+	public void initializePencil(){
+		pencil = new Pencil(initialPointDurability, initialLength, initialEraserDurability);
+	}
+	
 	
 	/** POINT DEGRADATION USER STORY
 	 * 
@@ -25,9 +40,7 @@ public class PencilTest {
 	 */
 	@Test
 	public void initialPointDurability(){
-		initialPointDurability = 200;
-		
-		pencil = new Pencil(initialPointDurability);
+		initializePencil();
 		Assert.assertEquals(initialPointDurability, pencil.getPointDurability());
 	}
 	
@@ -36,6 +49,7 @@ public class PencilTest {
 	 */
 	@Test
 	public void lowerCasePointDegradation(){
+		
 		char[] lowerCaseLetters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
 		for(char lowerCaseChar : lowerCaseLetters)
 			checkPointDegradation(lowerCaseChar, 1);
@@ -46,6 +60,7 @@ public class PencilTest {
 	 */
 	@Test
 	public void whiteSpacePointDegradation(){
+		
 		char[] whiteSpaceChars = " \n".toCharArray();
 		for(char whiteSpaceChar : whiteSpaceChars)
 			checkPointDegradation(whiteSpaceChar, 0);
@@ -56,6 +71,7 @@ public class PencilTest {
 	 */
 	@Test
 	public void upperCasePointDegradation(){
+		
 		char[] upperCaseLetters = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
 		for(char upperCaseChar : upperCaseLetters)
 			checkPointDegradation(upperCaseChar, 2);
@@ -63,14 +79,62 @@ public class PencilTest {
 	
 	
 	private void checkPointDegradation(char writeCharacter, int characterCost){
-		initialPointDurability();
 		
-		int expectedDurability = pencil.getPointDurability() - characterCost;
+		int expectedDurability = initialPointDurability - characterCost;
 		pencil.write(paper, Character.toString(writeCharacter));
 		
 		Assert.assertEquals(expectedDurability, pencil.getPointDurability());
 	}
 	
+	
+	/** SHARPEN USER STORIES
+	 * 
+	 * As a writer
+	 * I want to be able to sharpen my pencil
+	 * so that I can continue to write with it after it goes dull
+	 */
+	
+	@Test
+	public void initialLength(){
+		initializePencil();
+		Assert.assertEquals(initialLength, pencil.getLength());
+	}
+	
+	
+	/**
+	 * When a pencil is sharpened, it regains its initial point durability
+	 */
+	@Test
+	public void sharpenBackToInitialDurability(){
+		
+		pencil.write(paper, "sharpenBackToInitialDurability");
+		pencil.sharpen();
+		
+		Assert.assertEquals(initialPointDurability, pencil.getPointDurability());
+	}
+	
+	/**
+	 * The pencil's length is reduced by one each time it is sharpened
+	 */
+	@Test
+	public void sharpenReducesLength(){
+		
+		pencil.sharpen();
+		Assert.assertEquals(initialLength - 1, pencil.getLength());
+	}
+	
+	/**
+	 * When a pencil's length is zero, then sharpening it no longer restores its point durabliity
+	 */
+	@Test
+	public void zeroLengthCanNotSharpen(){
+		
+		while(pencil.getLength() > 0) pencil.sharpen();
+		pencil.write(paper,  "zeroLengthCanNotSharpen");
+		pencil.sharpen();
+		
+		Assert.assertNotEquals(initialLength, pencil.getLength());
+	}
 	
 
 }

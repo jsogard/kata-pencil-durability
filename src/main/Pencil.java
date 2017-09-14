@@ -2,7 +2,7 @@ package main;
 
 public class Pencil {
 
-	public Pencil(int initialPointDurability) {
+	public Pencil(int initialPointDurability, int initialLength, int initialEraserDurability) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -14,6 +14,16 @@ public class Pencil {
 	public void write(Paper paper, String string) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void sharpen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int getLength() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
