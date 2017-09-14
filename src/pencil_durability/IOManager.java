@@ -98,20 +98,20 @@ public class IOManager {
 		System.out.println(menu);
 	}
 	
-	public void displayMenu(String menuName, Map<String, ?> options){
+	private void displayMenu(String menuName, Map<String, ?> options){
 		String[] optionsArr = new String[options.size()];
 		displayMenu(menuName, options.keySet().toArray(optionsArr));
 	}
 	
-	public void displayCommands(){
+	private void displayCommands(){
 		displayMenu("Commands",	commandTemplates);
 	}
 	
-	public void displayPencils(){
+	private void displayPencils(){
 		displayMenu("Pencils", pencils);
 	}
 	
-	public void displayPapers(){
+	private void displayPapers(){
 		displayMenu("Papers", papers);
 	}
 	
@@ -230,7 +230,7 @@ public class IOManager {
 		return words.toArray(new String[words.size()]);
 	}
 	
-	public String handleError(int outCode){
+	private String handleError(int outCode){
 		String out;
 		switch(outCode){
 		case 1:
