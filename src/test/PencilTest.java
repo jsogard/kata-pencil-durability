@@ -35,40 +35,42 @@ public class PencilTest {
 	 * Lowercase letters should degrade the pencil point by a value of one
 	 */
 	@Test
-	public void lowercasePointDegradation(){
-		initialPointDurability();
-		
-		int pointDurabilityBefore = pencil.getPointDurability();
-		pencil.write(paper, "a");
-		
-		Assert.assertEquals(pointDurabilityBefore - 1, pencil.getPointDurability());
+	public void lowerCasePointDegradation(){
+		char[] lowerCaseLetters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
+		for(char lowerCaseChar : lowerCaseLetters)
+			checkPointDegradation(lowerCaseChar, 1);
 	}
 	
 	/**
 	 * Writing spaces and newlines expends no graphite; therefore these characters should not affect the pencil point
 	 */
 	@Test
-	public void whitespacePointDegradation(){
-		initialPointDurability();
-		
-		int pointDurabilityBefore = pencil.getPointDurability();
-		pencil.write(paper, " ");
-		
-		Assert.assertEquals(pointDurabilityBefore, pencil.getPointDurability());
+	public void whiteSpacePointDegradation(){
+		char[] whiteSpaceChars = " \n".toCharArray();
+		for(char whiteSpaceChar : whiteSpaceChars)
+			checkPointDegradation(whiteSpaceChar, 0);
 	}
 	
 	/**
 	 * capital letters should degrade the point by two
 	 */
 	@Test
-	public void uppercasePointDegradation(){
+	public void upperCasePointDegradation(){
+		char[] upperCaseLetters = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
+		for(char upperCaseChar : upperCaseLetters)
+			checkPointDegradation(upperCaseChar, 2);
+	}
+	
+	
+	private void checkPointDegradation(char writeCharacter, int characterCost){
 		initialPointDurability();
 		
-		int pointDurabilityBefore = pencil.getPointDurability();
-		pencil.write(paper, "A");
+		int expectedDurability = pencil.getPointDurability() - characterCost;
+		pencil.write(paper, Character.toString(writeCharacter));
 		
-		Assert.assertEquals(pointDurabilityBefore - 2, pencil.getPointDurability());
+		Assert.assertEquals(expectedDurability, pencil.getPointDurability());
 	}
+	
 	
 
 }
