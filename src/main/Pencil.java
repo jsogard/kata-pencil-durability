@@ -36,4 +36,9 @@ public class Pencil {
 		
 	}
 
+	public void edit(Paper paper, String editText, int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

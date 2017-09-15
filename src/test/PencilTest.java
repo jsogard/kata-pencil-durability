@@ -13,12 +13,12 @@ public class PencilTest {
 	private final char[] lowerCaseCharacters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
 	private final char[] whiteSpaceCharacters = " \n".toCharArray();
 
-	private static Pencil pencil;
-	private static int initialPointDurability 	= 200;
-	private static int initialLength 			= 10;
-	private static int initialEraserDurability 	= 100;
+	private Pencil pencil;
+	private int initialPointDurability 	= 200;
+	private int initialLength 			= 10;
+	private int initialEraserDurability = 100;
 	
-	private static Paper paper;
+	private Paper paper;
 	
 	/**
 	 * When a pencil is created, it can be provided with a value for point durability
@@ -26,10 +26,9 @@ public class PencilTest {
 	 * When a pencil is created, it can be provided with a value for eraser durability
 	 */
 	@Before
-	public static Pencil initializePencil(){
+	public void initializePencil(){
 		pencil = new Pencil(initialPointDurability, initialLength, initialEraserDurability);
-		paper = PaperTest.initializePaper();
-		return pencil;
+		paper = new Paper();
 	}
 	
 	
