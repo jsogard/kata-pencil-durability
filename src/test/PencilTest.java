@@ -8,10 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PencilTest {
-	
-	private final char[] upperCaseCharacters = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
-	private final char[] lowerCaseCharacters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
-	private final char[] whiteSpaceCharacters = " \n".toCharArray();
 
 	private Pencil pencil;
 	private int initialPointDurability 	= 200;
@@ -55,7 +51,7 @@ public class PencilTest {
 	@Test
 	public void lowerCasePointDegradation(){
 		
-		for(char lowerCaseChar : lowerCaseCharacters)
+		for(char lowerCaseChar : Pencil.lowerCaseCharacters)
 			checkPointDegradation(lowerCaseChar, 1);
 	}
 	
@@ -65,7 +61,7 @@ public class PencilTest {
 	@Test
 	public void whiteSpacePointDegradation(){
 		
-		for(char whiteSpaceChar : whiteSpaceCharacters)
+		for(char whiteSpaceChar : Pencil.whiteSpaceCharacters)
 			checkPointDegradation(whiteSpaceChar, 0);
 	}
 	
@@ -75,7 +71,7 @@ public class PencilTest {
 	@Test
 	public void upperCasePointDegradation(){
 		
-		for(char upperCaseChar : upperCaseCharacters)
+		for(char upperCaseChar : Pencil.upperCaseCharacters)
 			checkPointDegradation(upperCaseChar, 2);
 	}
 	
@@ -160,16 +156,16 @@ public class PencilTest {
 	@Test
 	public void eraseWhiteSpaceNoDegradation(){
 		
-		for(char whiteSpaceChar : whiteSpaceCharacters)
+		for(char whiteSpaceChar : Pencil.whiteSpaceCharacters)
 			checkEraserDegradation(whiteSpaceChar, 0);
 	}
 	
 	@Test
 	public void eraseCharacterDegradation(){
 		
-		for(char upperCaseChar : upperCaseCharacters)
+		for(char upperCaseChar : Pencil.upperCaseCharacters)
 			checkEraserDegradation(upperCaseChar, 1);
-		for(char lowerCaseChar : upperCaseCharacters)
+		for(char lowerCaseChar : Pencil.lowerCaseCharacters)
 			checkEraserDegradation(lowerCaseChar, 1);
 	}
 	
