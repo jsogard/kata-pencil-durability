@@ -35,7 +35,7 @@ public class PaperTest {
 	@Test
 	public void textWrittenAppendedToNothing(){
 		
-		String appendedString = "textWrittenAppendedToNothing";
+		String appendedString = "She sells sea shells";
 		pencil.write(paper, appendedString);
 		
 		Assert.assertEquals(appendedString, paper.getText());
@@ -47,12 +47,14 @@ public class PaperTest {
 	@Test
 	public void textWrittenAppended(){
 		
-		textWrittenAppendedToNothing();
-		String appendedString = "textWrittenAppended",
-				textBefore = paper.getText();
-		pencil.write(paper, appendedString);
+		String textBefore = "She sells sea shells",
+				appendText = " down by the sea shore",
+				expectedText = textBefore + appendText;
 		
-		Assert.assertEquals(textBefore + appendedString, paper.getText());
+		pencil.write(paper, textBefore);
+		pencil.write(paper, appendText);
+		
+		Assert.assertEquals(expectedText, paper.getText());
 	}
 	
 	
@@ -64,16 +66,18 @@ public class PaperTest {
 	 */
 	
 	/**
-	 * after it goes dull, every character it is directed to write will appear as a space
+	 * When the point durability is low, the pencil will be able to write only a limited number of characters before ... every character it is directed to write will appear as a space
 	 */
 	@Test
-	public void dullPencilWritesSpaces(){
+	public void pointDullsWhileWriting(){
 		
-		pencil = new Pencil(0, initialLength, initialEraserDurability);
-		String textBefore = paper.getText();
-		pencil.write(paper, "a");
+		pencil = new Pencil(4, initialLength, initialEraserDurability);
+		String writeText = "Text",
+				expectedText = "Tex ";
 		
-		Assert.assertEquals(textBefore + " ", paper.getText());
+		pencil.write(paper, writeText);
+		
+		Assert.assertEquals(expectedText, paper.getText());
 	}
 	
 	
@@ -115,12 +119,13 @@ public class PaperTest {
 	public void noEraserDoesNotErase(){
 		
 		pencil = new Pencil(initialPointDurability, 0, initialEraserDurability);
-		String appendedText = "noEraserDoesNotErase";
-		pencil.write(paper, appendedText);
-		String expectedText = paper.getText();
-		pencil.erase(paper, appendedText);
+		String textBefore = "Buffalo Bill",
+				eraseText = "Bill";
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		pencil.write(paper, textBefore);
+		pencil.erase(paper, eraseText);
+		
+		Assert.assertEquals(textBefore, paper.getText());
 	}
 	
 	/**
@@ -131,11 +136,11 @@ public class PaperTest {
 		
 		pencil = new Pencil(initialPointDurability, 3, initialEraserDurability);
 		String textBefore = "Buffalo Bill",
-				eraseString = "Bill",
+				eraseText = "Bill",
 				expectedText = "Buffalo B   ";
 		
 		pencil.write(paper, textBefore);
-		pencil.erase(paper, eraseString);
+		pencil.erase(paper, eraseText);
 		
 		Assert.assertEquals(expectedText, paper.getText());
 	}
@@ -154,12 +159,15 @@ public class PaperTest {
 	@Test
 	public void writeTextOverWhiteSpace(){
 		
-		String editText = "writeTextOverWhiteSpace", whiteSpaceText = "";
-		for(int i = 0; i < editText.length(); i++) whiteSpaceText += " ";
-		pencil.write(paper, whiteSpaceText);
-		pencil.edit(paper, editText, 0);
+		String textBefore = "An       a day keeps the doctor away",
+				editString = "onion",
+				expectedText = "An onion a day keeps the doctor away";
+		int editIndex = 3;
 		
-		Assert.assertEquals(editText, paper.getText());
+		pencil.write(paper, textBefore);
+		pencil.edit(paper, editString, editIndex);
+		
+		Assert.assertEquals(expectedText, paper.getText());
 	}
 	
 	/**
@@ -168,15 +176,15 @@ public class PaperTest {
 	@Test
 	public void writeCollisions(){
 		
-		String textBefore = "writecollisions", editText = "", collisionText = "";
-		for(char character : textBefore.toCharArray()){
-			editText += (character + 1);
-			collisionText += "@";
-		}
-		pencil.write(paper, textBefore);
-		pencil.edit(paper, editText, 0);
+		String textBefore = "An       a day keeps the doctor away",
+				editText = "artichoke",
+				expectedText = "An artich@k@ay keeps the doctor away";
+		int editIndex = 3;
 		
-		Assert.assertEquals(collisionText, paper.getText());
+		pencil.write(paper, textBefore);
+		pencil.edit(paper, editText, editIndex);
+		
+		Assert.assertEquals(expectedText, paper.getText());
 	}
 
 }
