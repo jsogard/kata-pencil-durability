@@ -1,25 +1,42 @@
 package main;
 
 public class Paper {
+	
+	private String text;
+	
+	public Paper(){ text = "";}
 
 	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
+		return text;
 	}
 
 	public void appendCharacter(char writeChar) {
-		// TODO Auto-generated method stub
-		
+		text += writeChar;
 	}
 
-	public void editChar(int index, char editChar) {
-		// TODO Auto-generated method stub
+	public void editChar(int editIndex, char editChar) {
+		if(editIndex >= text.length() || editIndex < 0) return;
+		// out of bounds
 		
+		char existingChar = text.charAt(editIndex);
+		if(existingChar == editChar || Character.isWhitespace(editChar)) return;
+		// no change
+		
+		char replacementChar = (Character.isWhitespace(existingChar) ? editChar : '@');
+		// yes change
+		
+		replaceCharacter(editIndex, replacementChar);
 	}
 
 	public void eraseChar(int eraseIndex) {
-		// TODO Auto-generated method stub
-		
+		if(eraseIndex >= text.length() || eraseIndex < 0) return;
+		replaceCharacter(eraseIndex, ' ');
+	}
+	
+	private void replaceCharacter(int index, char replaceChar){
+		char[] paperText = text.toCharArray();
+		paperText[index] = replaceChar;
+		text = paperText.toString();
 	}
 
 }
