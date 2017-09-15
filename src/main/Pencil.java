@@ -26,4 +26,14 @@ public class Pencil {
 		return null;
 	}
 
+	public int getEraserDurability() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void erase(Paper paper, String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

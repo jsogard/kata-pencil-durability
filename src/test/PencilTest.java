@@ -8,6 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PencilTest {
+	
+	private final char[] upperCaseCharacters = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
+	private final char[] lowerCaseCharacters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
+	private final char[] whiteSpaceCharacters = " \n".toCharArray();
 
 	Pencil pencil;
 	int initialPointDurability 	= 200;
@@ -50,8 +54,7 @@ public class PencilTest {
 	@Test
 	public void lowerCasePointDegradation(){
 		
-		char[] lowerCaseLetters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
-		for(char lowerCaseChar : lowerCaseLetters)
+		for(char lowerCaseChar : lowerCaseCharacters)
 			checkPointDegradation(lowerCaseChar, 1);
 	}
 	
@@ -61,8 +64,7 @@ public class PencilTest {
 	@Test
 	public void whiteSpacePointDegradation(){
 		
-		char[] whiteSpaceChars = " \n".toCharArray();
-		for(char whiteSpaceChar : whiteSpaceChars)
+		for(char whiteSpaceChar : whiteSpaceCharacters)
 			checkPointDegradation(whiteSpaceChar, 0);
 	}
 	
@@ -72,8 +74,7 @@ public class PencilTest {
 	@Test
 	public void upperCasePointDegradation(){
 		
-		char[] upperCaseLetters = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
-		for(char upperCaseChar : upperCaseLetters)
+		for(char upperCaseChar : upperCaseCharacters)
 			checkPointDegradation(upperCaseChar, 2);
 	}
 	
@@ -135,6 +136,50 @@ public class PencilTest {
 		
 		Assert.assertNotEquals(initialLength, pencil.getLength());
 	}
+	
+	/** ERASER DEGRADATION USER STORY
+	 * 
+	 * As a pencil manufacturer
+	 * I want a pencil eraser to eventually wear out
+	 * so that I can sell more pencils
+	 */
+	
+	/**
+	 * When a pencil is created, it can be provided with a value for eraser durability
+	 */
+	@Test
+	public void initialEraserDurability(){
+		initializePencil();
+		Assert.assertEquals(initialEraserDurability, pencil.getEraserDurability());
+	}
+	
+	/**
+	 * all characters except for white space should degrade the eraser by a value of one
+	 */
+	@Test
+	public void eraseWhiteSpaceNoDegradation(){
+		
+		for(char whiteSpaceChar : whiteSpaceCharacters)
+			checkEraserDegradation(whiteSpaceChar, 0);
+	}
+	
+	@Test
+	public void eraseCharacterDegradation(){
+		
+		for(char upperCaseChar : upperCaseCharacters)
+			checkEraserDegradation(upperCaseChar, 1);
+		for(char lowerCaseChar : upperCaseCharacters)
+			checkEraserDegradation(lowerCaseChar, 1);
+	}
+	
+	private void checkEraserDegradation(char eraseCharacter, int characterCost){
+		
+		int expectedEraserDurability = initialEraserDurability - characterCost;
+		pencil.erase(paper, Character.toString(eraseCharacter));
+		
+		Assert.assertEquals(expectedEraserDurability, pencil.getEraserDurability());
+	}
+
 	
 
 }
