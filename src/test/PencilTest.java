@@ -3,7 +3,6 @@ package test;
 import main.*;
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,7 +41,7 @@ public class PencilTest {
 	@Test
 	public void initialPointDurability(){
 		initializePencil();
-		Assert.assertEquals(initialPointDurability, pencil.getPointDurability());
+		assertEquals(initialPointDurability, pencil.getPointDurability());
 	}
 	
 	/**
@@ -81,7 +80,7 @@ public class PencilTest {
 		int expectedDurability = initialPointDurability - characterCost;
 		pencil.write(paper, Character.toString(writeCharacter));
 		
-		Assert.assertEquals(expectedDurability, pencil.getPointDurability());
+		assertEquals(expectedDurability, pencil.getPointDurability());
 	}
 	
 	
@@ -95,7 +94,7 @@ public class PencilTest {
 	@Test
 	public void initialLength(){
 		initializePencil();
-		Assert.assertEquals(initialLength, pencil.getLength());
+		assertEquals(initialLength, pencil.getLength());
 	}
 	
 	
@@ -108,7 +107,7 @@ public class PencilTest {
 		pencil.write(paper, "sharpenBackToInitialDurability");
 		pencil.sharpen();
 		
-		Assert.assertEquals(initialPointDurability, pencil.getPointDurability());
+		assertEquals(initialPointDurability, pencil.getPointDurability());
 	}
 	
 	/**
@@ -118,7 +117,7 @@ public class PencilTest {
 	public void sharpenReducesLength(){
 		
 		pencil.sharpen();
-		Assert.assertEquals(initialLength - 1, pencil.getLength());
+		assertEquals(initialLength - 1, pencil.getLength());
 	}
 	
 	/**
@@ -131,7 +130,7 @@ public class PencilTest {
 		pencil.write(paper,  "zeroLengthCanNotSharpen");
 		pencil.sharpen();
 		
-		Assert.assertNotEquals(initialPointDurability, pencil.getPointDurability());
+		assertNotEquals(initialPointDurability, pencil.getPointDurability());
 	}
 	
 	/** ERASER DEGRADATION USER STORY
@@ -147,7 +146,8 @@ public class PencilTest {
 	@Test
 	public void initialEraserDurability(){
 		initializePencil();
-		Assert.assertEquals(initialEraserDurability, pencil.getEraserDurability());
+		
+		assertEquals(initialEraserDurability, pencil.getEraserDurability());
 	}
 	
 	/**
@@ -174,7 +174,7 @@ public class PencilTest {
 		int expectedEraserDurability = initialEraserDurability - characterCost;
 		pencil.erase(paper, Character.toString(eraseCharacter));
 		
-		Assert.assertEquals(expectedEraserDurability, pencil.getEraserDurability());
+		assertEquals(expectedEraserDurability, pencil.getEraserDurability());
 	}
 
 	

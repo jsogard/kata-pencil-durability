@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import junit.framework.Assert;
+//import junit.framework.Assert;
 
 public class PaperTest {
 
@@ -38,7 +38,7 @@ public class PaperTest {
 		String appendedString = "She sells sea shells";
 		pencil.write(paper, appendedString);
 		
-		Assert.assertEquals(appendedString, paper.getText());
+		assertEquals(appendedString, paper.getText());
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class PaperTest {
 		pencil.write(paper, textBefore);
 		pencil.write(paper, appendText);
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		assertEquals(expectedText, paper.getText());
 	}
 	
 	
@@ -77,7 +77,7 @@ public class PaperTest {
 		
 		pencil.write(paper, writeText);
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		assertEquals(expectedText, paper.getText());
 	}
 	
 	
@@ -101,7 +101,7 @@ public class PaperTest {
 		pencil.write(paper, textContents);
 		pencil.erase(paper, eraseString);
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		assertEquals(expectedText, paper.getText());
 	}
 	
 	
@@ -125,7 +125,7 @@ public class PaperTest {
 		pencil.write(paper, textBefore);
 		pencil.erase(paper, eraseText);
 		
-		Assert.assertEquals(textBefore, paper.getText());
+		assertEquals(textBefore, paper.getText());
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public class PaperTest {
 		pencil.write(paper, textBefore);
 		pencil.erase(paper, eraseText);
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		assertEquals(expectedText, paper.getText());
 	}
 	
 	
@@ -167,7 +167,7 @@ public class PaperTest {
 		pencil.write(paper, textBefore);
 		pencil.edit(paper, editString, editIndex);
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		assertEquals(expectedText, paper.getText());
 	}
 	
 	/**
@@ -184,7 +184,7 @@ public class PaperTest {
 		pencil.write(paper, textBefore);
 		pencil.edit(paper, editText, editIndex);
 		
-		Assert.assertEquals(expectedText, paper.getText());
+		assertEquals(expectedText, paper.getText());
 	}
 
 }
