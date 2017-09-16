@@ -50,7 +50,7 @@ public class PencilTest {
 	@Test
 	public void lowerCasePointDegradation(){
 		
-		for(char lowerCaseChar : Pencil.lowerCaseCharacters)
+		for(char lowerCaseChar : Pencil.LOWER_CASE_CHARACTERS)
 			checkPointDegradation(lowerCaseChar, 1);
 	}
 	
@@ -60,7 +60,7 @@ public class PencilTest {
 	@Test
 	public void whiteSpacePointDegradation(){
 		
-		for(char whiteSpaceChar : Pencil.whiteSpaceCharacters)
+		for(char whiteSpaceChar : Pencil.WHITE_SPACE_CHARACTERS)
 			checkPointDegradation(whiteSpaceChar, 0);
 	}
 	
@@ -70,7 +70,7 @@ public class PencilTest {
 	@Test
 	public void upperCasePointDegradation(){
 		
-		for(char upperCaseChar : Pencil.upperCaseCharacters)
+		for(char upperCaseChar : Pencil.UPPER_CASE_CHARACTERS)
 			checkPointDegradation(upperCaseChar, 2);
 	}
 	
@@ -157,16 +157,16 @@ public class PencilTest {
 	@Test
 	public void eraseWhiteSpaceNoDegradation(){
 		
-		for(char whiteSpaceChar : Pencil.whiteSpaceCharacters)
+		for(char whiteSpaceChar : Pencil.WHITE_SPACE_CHARACTERS)
 			checkEraserDegradation(whiteSpaceChar, 0);
 	}
 	
 	@Test
 	public void eraseCharacterDegradation(){
 		
-		for(char upperCaseChar : Pencil.upperCaseCharacters)
+		for(char upperCaseChar : Pencil.UPPER_CASE_CHARACTERS)
 			checkEraserDegradation(upperCaseChar, 1);
-		for(char lowerCaseChar : Pencil.lowerCaseCharacters)
+		for(char lowerCaseChar : Pencil.LOWER_CASE_CHARACTERS)
 			checkEraserDegradation(lowerCaseChar, 1);
 	}
 	

@@ -2,9 +2,9 @@ package main;
 
 public class Pencil {
 	
-	public static final char[] upperCaseCharacters = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
-	public static final char[] lowerCaseCharacters = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
-	public static final char[] whiteSpaceCharacters = " \n".toCharArray();
+	public static final char[] UPPER_CASE_CHARACTERS = "QWERTYUIOPASDFGHJKLZXCVBNM".toCharArray();
+	public static final char[] LOWER_CASE_CHARACTERS = "qwertyuiopasdfghjklzxcvbnm".toCharArray();
+	public static final char[] WHITE_SPACE_CHARACTERS = " \n".toCharArray();
 	
 	private int initialPointDurability;
 	private int pointDurability;
@@ -82,22 +82,22 @@ public class Pencil {
 	}
 	
 	private static int getCharacterWriteCost(char character){
-		for(char upperCase : upperCaseCharacters)
+		for(char upperCase : UPPER_CASE_CHARACTERS)
 			if(character == upperCase) return 2;
-		for(char lowerCase : lowerCaseCharacters)
+		for(char lowerCase : LOWER_CASE_CHARACTERS)
 			if(character == lowerCase) return 1;
-		for(char whiteSpace : whiteSpaceCharacters)
+		for(char whiteSpace : WHITE_SPACE_CHARACTERS)
 			if(character == whiteSpace) return 0;
 		
 		return 1;
 	}
 	
 	private static int getCharacterEraseCost(char character){
-		for(char upperCase : upperCaseCharacters)
+		for(char upperCase : UPPER_CASE_CHARACTERS)
 			if(character == upperCase) return 1;
-		for(char lowerCase : lowerCaseCharacters)
+		for(char lowerCase : LOWER_CASE_CHARACTERS)
 			if(character == lowerCase) return 1;
-		for(char whiteSpace : whiteSpaceCharacters)
+		for(char whiteSpace : WHITE_SPACE_CHARACTERS)
 			if(character == whiteSpace) return 0;
 		
 		return 1;
