@@ -6,11 +6,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-//import junit.framework.Assert;
-
 public class PaperTest {
 
 	private Paper paper;
+	
 	private Pencil pencil;
 	private int initialPointDurability 	= 200;
 	private int initialLength 			= 10;
@@ -57,6 +56,20 @@ public class PaperTest {
 		assertEquals(expectedText, paper.getText());
 	}
 	
+	/**
+	 * Edge case: append empty string
+	 */
+	@Test
+	public void writeEmptyStringNoChange(){
+		
+		String textBefore = "She sells sea shells",
+				appendText = "";
+		
+		pencil.write(paper, textBefore);
+		pencil.write(paper, appendText);
+		
+		assertEquals(textBefore, paper.getText());
+	}
 	
 	/** POINT DEGRADATION USER STORY
 	 * 
@@ -74,6 +87,21 @@ public class PaperTest {
 		pencil = new Pencil(4, initialLength, initialEraserDurability);
 		String writeText = "Text",
 				expectedText = "Tex ";
+		
+		pencil.write(paper, writeText);
+		
+		assertEquals(expectedText, paper.getText());
+	}
+	
+	/**
+	 * [WHen a point is dull] every character it is directed to write will appear as a space
+	 */
+	@Test
+	public void dullPointWritesSpaces(){
+		
+		pencil = new Pencil(0, initialLength, initialEraserDurability);
+		String writeText = "Too dull",
+				expectedText = "        ";
 		
 		pencil.write(paper, writeText);
 		
@@ -102,8 +130,22 @@ public class PaperTest {
 		pencil.erase(paper, eraseString);
 		
 		assertEquals(expectedText, paper.getText());
-	}
+	}	
 	
+	/**
+	 * edge case: try to erase substring that doesn't edxist, no change
+	 */
+	@Test
+	public void eraseNoOccurance(){
+		
+		String textContents = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?",
+				eraseText = "banana";
+		
+		pencil.write(paper, textContents);
+		pencil.erase(paper, eraseText);
+		
+		assertEquals(textContents, paper.getText());
+	}
 	
 	/** ERASER DEGRADATION USER STORY
 	 * 
@@ -179,6 +221,41 @@ public class PaperTest {
 		String textBefore = "An       a day keeps the doctor away",
 				editText = "artichoke",
 				expectedText = "An artich@k@ay keeps the doctor away";
+		int editIndex = 3;
+		
+		pencil.write(paper, textBefore);
+		pencil.edit(paper, editText, editIndex);
+		
+		assertEquals(expectedText, paper.getText());
+	}
+	
+	/**
+	 * edge case: out of bounds edit index does nothing
+	 */
+	@Test
+	public void editOutOfBounds(){
+		
+		String textBefore = "An       a day keeps the doctor away",
+				editText = "artichoke";
+		int editIndexUnder = -1,
+				editIndexOver = textBefore.length();
+		
+		pencil.write(paper, textBefore);
+		pencil.edit(paper, editText, editIndexUnder);
+		pencil.edit(paper, editText, editIndexOver);
+		
+		assertEquals(textBefore, paper.getText());
+	}
+	
+	/**
+	 * edge case: edit text overflow does not append
+	 */
+	@Test
+	public void editTextOverflow(){
+		
+		String textBefore = "An    ",
+				editText = "artichoke",
+				expectedText = "An art";
 		int editIndex = 3;
 		
 		pencil.write(paper, textBefore);
