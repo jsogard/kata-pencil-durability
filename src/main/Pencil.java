@@ -66,6 +66,7 @@ public class Pencil {
 	}
 
 	public void edit(Paper paper, String editText, int index) {
+		if(index < 0 || index >= paper.getText().length()) return;
 		
 		char editChar;
 		for(int editIndex = 0; editIndex < editText.length(); editIndex++){
