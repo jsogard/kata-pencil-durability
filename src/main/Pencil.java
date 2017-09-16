@@ -60,10 +60,11 @@ public class Pencil {
 		
 		for(; eraseIndex >= eraseStart; eraseIndex--){
 			eraseChar = paper.getText().charAt(eraseIndex);
-			if(eraserDurability < getCharacterEraseCost(eraseChar))
+			if(eraserDurability >= getCharacterEraseCost(eraseChar)){
 				paper.eraseChar(eraseIndex);
-			else
-				return;
+				eraserDurability -= getCharacterEraseCost(eraseChar);
+			}
+			else return;
 		}
 		
 	}

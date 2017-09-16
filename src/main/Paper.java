@@ -36,7 +36,7 @@ public class Paper {
 	private void replaceCharacter(int index, char replaceChar){
 		char[] paperText = text.toCharArray();
 		paperText[index] = replaceChar;
-		text = paperText.toString();
+		text = new String(paperText);
 	}
 
 }

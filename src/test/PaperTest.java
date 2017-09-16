@@ -118,7 +118,7 @@ public class PaperTest {
 	@Test
 	public void noEraserDoesNotErase(){
 		
-		pencil = new Pencil(initialPointDurability, 0, initialEraserDurability);
+		pencil = new Pencil(initialPointDurability, initialLength, 0);
 		String textBefore = "Buffalo Bill",
 				eraseText = "Bill";
 		
@@ -134,7 +134,7 @@ public class PaperTest {
 	@Test
 	public void partialEraseBackwardsOrder(){
 		
-		pencil = new Pencil(initialPointDurability, 3, initialEraserDurability);
+		pencil = new Pencil(initialPointDurability, initialLength, 3);
 		String textBefore = "Buffalo Bill",
 				eraseText = "Bill",
 				expectedText = "Buffalo B   ";

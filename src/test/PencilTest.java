@@ -76,6 +76,7 @@ public class PencilTest {
 	
 	
 	private void checkPointDegradation(char writeCharacter, int characterCost){
+		initializePencil();
 		
 		int expectedDurability = initialPointDurability - characterCost;
 		pencil.write(paper, Character.toString(writeCharacter));
@@ -170,8 +171,10 @@ public class PencilTest {
 	}
 	
 	private void checkEraserDegradation(char eraseCharacter, int characterCost){
+		initializePencil();
 		
 		int expectedEraserDurability = initialEraserDurability - characterCost;
+		pencil.write(paper, Character.toString(eraseCharacter));
 		pencil.erase(paper, Character.toString(eraseCharacter));
 		
 		assertEquals(expectedEraserDurability, pencil.getEraserDurability());
