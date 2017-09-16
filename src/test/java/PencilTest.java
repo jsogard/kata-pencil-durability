@@ -1,10 +1,11 @@
-package test;
+package test.java;
 
-import main.*;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import main.java.*;
 
 public class PencilTest {
 
