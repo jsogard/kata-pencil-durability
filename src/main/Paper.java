@@ -22,7 +22,7 @@ public class Paper {
 		if(existingChar == editChar || Character.isWhitespace(editChar)) return;
 		// no change
 		
-		char replacementChar = (Character.isWhitespace(existingChar) ? editChar : '@');
+		char replacementChar = (Character.isWhitespace(existingChar) ? editChar : Constants.COLLISION_CHARACTER);
 		// yes change
 		
 		replaceCharacter(editIndex, replacementChar);

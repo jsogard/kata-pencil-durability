@@ -50,8 +50,8 @@ public class PencilTest {
 	@Test
 	public void lowerCasePointDegradation(){
 		
-		for(char lowerCaseChar : Pencil.LOWER_CASE_CHARACTERS)
-			checkPointDegradation(lowerCaseChar, 1);
+		for(char lowerCaseChar : Constants.LOWER_CASE_CHARACTERS)
+			checkPointDegradation(lowerCaseChar, Constants.LOWER_CASE_WRITE_COST);
 	}
 	
 	/**
@@ -60,8 +60,8 @@ public class PencilTest {
 	@Test
 	public void whiteSpacePointDegradation(){
 		
-		for(char whiteSpaceChar : Pencil.WHITE_SPACE_CHARACTERS)
-			checkPointDegradation(whiteSpaceChar, 0);
+		for(char whiteSpaceChar : Constants.WHITE_SPACE_CHARACTERS)
+			checkPointDegradation(whiteSpaceChar, Constants.WHITE_SPACE_WRITE_COST);
 	}
 	
 	/**
@@ -70,8 +70,8 @@ public class PencilTest {
 	@Test
 	public void upperCasePointDegradation(){
 		
-		for(char upperCaseChar : Pencil.UPPER_CASE_CHARACTERS)
-			checkPointDegradation(upperCaseChar, 2);
+		for(char upperCaseChar : Constants.UPPER_CASE_CHARACTERS)
+			checkPointDegradation(upperCaseChar, Constants.UPPER_CASE_WRITE_COST);
 	}
 	
 	
@@ -157,17 +157,17 @@ public class PencilTest {
 	@Test
 	public void eraseWhiteSpaceNoDegradation(){
 		
-		for(char whiteSpaceChar : Pencil.WHITE_SPACE_CHARACTERS)
-			checkEraserDegradation(whiteSpaceChar, 0);
+		for(char whiteSpaceChar : Constants.WHITE_SPACE_CHARACTERS)
+			checkEraserDegradation(whiteSpaceChar, Constants.WHITE_SPACE_ERASE_COST);
 	}
 	
 	@Test
 	public void eraseCharacterDegradation(){
 		
-		for(char upperCaseChar : Pencil.UPPER_CASE_CHARACTERS)
-			checkEraserDegradation(upperCaseChar, 1);
-		for(char lowerCaseChar : Pencil.LOWER_CASE_CHARACTERS)
-			checkEraserDegradation(lowerCaseChar, 1);
+		for(char upperCaseChar : Constants.UPPER_CASE_CHARACTERS)
+			checkEraserDegradation(upperCaseChar, Constants.UPPER_CASE_ERASE_COST);
+		for(char lowerCaseChar : Constants.LOWER_CASE_CHARACTERS)
+			checkEraserDegradation(lowerCaseChar, Constants.LOWER_CASE_ERASE_COST);
 	}
 	
 	private void checkEraserDegradation(char eraseCharacter, int characterCost){
