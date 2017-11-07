@@ -40,7 +40,6 @@ public class PaperTest {
 		Assert.assertEquals(expectedString, paper.getText());
 	}
 	
-	
 	/* 
 	 * TC02-POINTDEG_DULL_WRITE
 	 * after it goes dull, every character it is directed to write will appear as a space
@@ -48,6 +47,16 @@ public class PaperTest {
 	 * 	if a pencil with point durability of four is instructed to write the string "Text", 
 	 * 	the paper will only show "Tex "
 	 */
+	@Test
+	public void pointdegDullWrite(){
+		String appendString = "Text",
+				expectedString = "Tex ";
+		int initialPointDurability = 4;
+		pencil = new Pencil(initialPointDurability, initialLength, initialEraserDurability);
+		pencil.write(paper, appendString);
+		
+		Assert.assertEquals(expectedString, paper.getText());
+	}
 	
 	/*
 	 * TC09-ERASE_LAST_OCCURANCE
