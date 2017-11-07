@@ -147,7 +147,7 @@ public class PencilTest {
 		String initialString =new String(Constants.WHITESPACE_CHARACTERS); 
 		pencil.write(paper, initialString);
 		
-		for(char c : Constants.WHITESPACE_CHARACTERS){
+		for(char c : initialString.toCharArray()){
 			eraserDurabilityBefore = pencil.getEraserDurability();
 			pencil.erase(paper, c);
 			
@@ -160,6 +160,20 @@ public class PencilTest {
 	 * all characters except for white space should degrade the eraser by a value of one
 	 * e.g. erasing non-whitespace characters should degrade eraser by one
 	 */
+	@Test
+	public void eraserdegCharacter(){
+		int eraserDurabilityBefore,
+			eraseCost = 1;
+		String initialString = new String(Constants.LOWERCASE_CHARACTERS) + new String(Constants.UPPERCASE_CHARACTERS); 
+		pencil.write(paper, initialString);
+		
+		for(char c : initialString.toCharArray()){
+			eraserDurabilityBefore = pencil.getEraserDurability();
+			pencil.erase(paper, c);
+			
+			Assert.assertEquals(eraserDurabilityBefore - eraseCost, pencil.getEraserDurability());
+		}
+	}
 	
 	
 
