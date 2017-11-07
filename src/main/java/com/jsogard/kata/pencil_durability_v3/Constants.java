@@ -12,5 +12,7 @@ public class Constants {
 	
 	public static final int CHARACTER_ERASE_COST = 1;
 	public static final int WHITESPACE_ERASE_COST = 0;
+	
+	public static final char COLLISION_CHARACTER = '@';
 
 }

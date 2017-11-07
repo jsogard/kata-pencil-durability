@@ -136,5 +136,17 @@ public class PaperTest {
 	 * 	in the middle of "An       a day keeps the doctor away" 
 	 * 	would result in "An artich@k@ay keeps the doctor away"
 	 */
+	@Test
+	public void editCollision(){
+		String initialString = "An       a day keeps the doctor away",
+				editString = "artichoke",
+				expectedString = "An artich@k@ay keeps the doctor away";
+		int index = 3;
+		
+		pencil.write(paper, initialString);
+		pencil.edit(paper, editString, index);
+		
+		Assert.assertEquals(expectedString, paper.getText());
+	}
 
 }

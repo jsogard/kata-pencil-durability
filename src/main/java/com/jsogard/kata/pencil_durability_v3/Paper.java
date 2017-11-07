@@ -24,9 +24,15 @@ public class Paper {
 
 	public void edit(int index, char replaceChar) {
 		char[] textArray = text.toCharArray();
-		textArray[index] = replaceChar;
+		textArray[index] = checkCollision(textArray[index], replaceChar);
 		text = new String(textArray);
 	}
 	
+	private char checkCollision(char charPresent, char charWrite){
+		if(charPresent == charWrite) return charPresent;
+		if(charPresent == ' ') return charWrite;
+		if(charWrite == ' ') return charPresent;
+		return Constants.COLLISION_CHARACTER;
+	}
 	
 }
