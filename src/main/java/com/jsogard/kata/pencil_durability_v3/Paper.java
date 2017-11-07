@@ -21,6 +21,12 @@ public class Paper {
 		textArray[index] = ' ';
 		text = new String(textArray);
 	}
+
+	public void edit(int index, char replaceChar) {
+		char[] textArray = text.toCharArray();
+		textArray[index] = replaceChar;
+		text = new String(textArray);
+	}
 	
 	
 }

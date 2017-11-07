@@ -75,6 +75,16 @@ public class Pencil {
 		erase(paper, Character.toString(c));
 	}
 
+	public void edit(Paper paper, String writeString, int index) {
+		// i feel weird about it, but not error checking and not adding write cost bc user stories didnt say to...
+		int writeIndex = 0;
+		while(writeIndex < writeString.length()){
+			paper.edit(index, writeString.charAt(writeIndex));
+			writeIndex++;
+			index++;
+		}
+	}
+
 	
 
 }

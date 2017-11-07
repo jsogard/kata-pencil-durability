@@ -114,6 +114,17 @@ public class PaperTest {
 	 * 	a pencil can can be instructed to write the word "onion" in the white space gap, 
 	 * 	so the text reads "An onion a day keeps the doctor away".
 	 */
+	@Test
+	public void editOverWhitespace(){
+		String initialString = "An       a day keeps the doctor away",
+				writeString = "onion",
+				expectedString = "An onion a day keeps the doctor away";
+		int index = 3;
+		pencil.write(paper, initialString);
+		pencil.edit(paper, writeString, index);
+		
+		Assert.assertEquals(expectedString, paper.getText());
+	}
 	
 	/*
 	 * TC14-EDIT_COLLISION
