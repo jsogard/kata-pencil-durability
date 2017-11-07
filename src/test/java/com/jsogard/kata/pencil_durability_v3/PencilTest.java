@@ -125,6 +125,15 @@ public class PencilTest {
 	 * TC08-SHARPEN_NO_LENGTH
 	 * When a pencil's length is zero, then sharpening it no longer restores its point durabliity
 	 */
+	@Test
+	public void sharpenNoLength(){
+		int initialLength = 0;
+		pencil = new Pencil(initialPointDurability, initialLength, initialEraserDurability);
+		pencil.write(paper, "SHARPEN NO LENGTH");
+		pencil.sharpen();
+		
+		Assert.assertFalse(initialPointDurability == pencil.getPointDurability());
+	}
 	
 	/*
 	 * TC10-ERASERDEG_WHITESPACE

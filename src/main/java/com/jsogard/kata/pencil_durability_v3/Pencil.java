@@ -48,6 +48,7 @@ public class Pencil {
 	}
 
 	public void sharpen() {
+		if(length == 0) return;
 		length--;
 		pointDurability = initialPointDurability;
 	}
