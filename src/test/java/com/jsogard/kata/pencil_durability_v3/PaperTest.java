@@ -1,15 +1,44 @@
 package com.jsogard.kata.pencil_durability_v3;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import junit.framework.Assert;
+
 public class PaperTest {
+	
+	private Pencil pencil;
+	private Paper paper;
+	
+	private int initialPointDurability = 200;
+	private int initialLength = 10;
+	private int initialEraserDurability = 10;
+	
+	
+	@Before
+	public void paperInit(){
+		pencil = new Pencil(initialPointDurability, initialLength, initialEraserDurability);
+		paper = new Paper();
+	}
 	
 	/* 
 	 * TC00-WRITE_APPEND
 	 * Text written by the pencil should always be appended to existing text on the paper:
 	 * SCENARIO: 
 	 * 	given a piece of paper with the text "She sells sea shells", 
-	 * 	when a pencil is instructed to write "down by the sea shore" on the paper, 
+	 * 	when a pencil is instructed to write " down by the sea shore" on the paper, 
 	 * 	the paper will then contain the entire string
 	 */
+	@Test
+	public void writeAppend(){
+		String initialString = "She sells sea shells",
+				appendString = " down by the sea shore",
+				expectedString = "She sells sea shells down by the sea shore";
+		pencil.write(paper, initialString);
+		pencil.write(paper, appendString);
+		
+		Assert.assertEquals(expectedString, paper.getText());
+	}
 	
 	
 	/* 

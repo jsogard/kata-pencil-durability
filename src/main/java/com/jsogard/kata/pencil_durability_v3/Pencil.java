@@ -25,6 +25,12 @@ public class Pencil {
 	public int getEraserDurability() {
 		return eraserDurability;
 	}
+
+	public void write(Paper paper, String string) {
+		for(char character : string.toCharArray()){
+			paper.appendCharacter(character);
+		}
+	}
 	
 	
 
