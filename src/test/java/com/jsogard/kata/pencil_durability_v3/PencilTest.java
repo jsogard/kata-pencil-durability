@@ -114,6 +114,12 @@ public class PencilTest {
 	 * TC07-SHARPEN_REDUCE_LENGTH
 	 * The pencil's length is reduced by one each time it is sharpened
 	 */
+	@Test
+	public void sharpenReduceLength(){
+		pencil.sharpen();
+		
+		Assert.assertEquals(initialLength - 1, pencil.getLength());
+	}
 	
 	/*
 	 * TC08-SHARPEN_NO_LENGTH
