@@ -87,6 +87,16 @@ public class PencilTest {
 	 * TC05-POINTDEG_UPPERCASE_WRITE
 	 * capital letters should degrade the point by two
 	 */
+	@Test
+	public void pointdegUppercaseWrite(){
+		int pointDurabilityBefore,
+			expectedCost = 2;
+		for(char character : Constants.UPPERCASE_CHARACTERS){
+			pointDurabilityBefore = pencil.getPointDurability();
+			pencil.write(paper, character);
+			Assert.assertEquals(pointDurabilityBefore - expectedCost, pencil.getPointDurability());
+		}
+	}
 	
 	/*
 	 * TC06-SHARPEN_POINT_DUR
