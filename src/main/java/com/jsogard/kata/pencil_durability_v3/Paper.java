@@ -15,6 +15,12 @@ public class Paper {
 	public void appendCharacter(char character) {
 		text += character;		
 	}
+
+	public void eraseCharacter(int index) {
+		char[] textArray = text.toCharArray();
+		textArray[index] = ' ';
+		text = new String(textArray);
+	}
 	
 	
 }

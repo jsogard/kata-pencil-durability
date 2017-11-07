@@ -53,6 +53,15 @@ public class Pencil {
 		pointDurability = initialPointDurability;
 	}
 
+	public void erase(Paper paper, String eraseString) {
+		int end = paper.getText().lastIndexOf(eraseString);
+		if(end == -1) return;
+		int index = end + eraseString.length() - 1;
+		for(; index >= end; index--){
+			paper.eraseCharacter(index);
+		}
+	}
+
 	
 
 }

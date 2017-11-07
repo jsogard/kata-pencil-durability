@@ -69,6 +69,20 @@ public class PaperTest {
 	 * 	and if the string "chuck" is erased again, the paper should read:
 	 * 	"How much wood would a woodchuck chuck if a wood       could       wood?"
 	 */
+	@Test
+	public void eraseLastOccurance(){
+		String initialString = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?",
+				eraseString = "chuck",
+				expectedString1 = "How much wood would a woodchuck chuck if a woodchuck could       wood?",
+				expectedString2 = "How much wood would a woodchuck chuck if a wood      could       wood?";
+		pencil.write(paper, initialString);
+		pencil.erase(paper, eraseString);
+		
+		Assert.assertEquals(expectedString1, paper.getText());
+		pencil.erase(paper, eraseString);
+		
+		Assert.assertEquals(expectedString2, paper.getText());
+	}
 	
 	/*
 	 * TC12-ERASERDEG_INSUFF_DURABILITY

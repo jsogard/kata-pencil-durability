@@ -138,11 +138,13 @@ public class PencilTest {
 	/*
 	 * TC10-ERASERDEG_WHITESPACE
 	 * all characters except for white space should degrade the eraser by a value of one
+	 * e.g. erasing whitespace characters should not degrade eraser
 	 */
 	
 	/*
 	 * TC11-ERASERDEG_CHARACTER
 	 * all characters except for white space should degrade the eraser by a value of one
+	 * e.g. erasing non-whitespace characters should degrade eraser by one
 	 */
 	
 	
