@@ -92,6 +92,19 @@ public class PaperTest {
 	 * 	and it is instructed to erase the word "Bill" from "Buffalo Bill", 
 	 * 	then the text remaining on the paper is "Buffalo B   "
 	 */
+	@Test
+	public void eraserdegInsuffDurability(){
+		String initialString = "Buffalo Bill",
+				eraseString = "Bill",
+				expectedString = "Buffalo B   ";
+		int eraserDurability = 3;
+		pencil = new Pencil(initialPointDurability, initialLength, eraserDurability);
+		
+		pencil.write(paper, initialString);
+		pencil.erase(paper, eraseString);
+		
+		Assert.assertEquals(expectedString, paper.getText());
+	}
 	
 	/*
 	 * TC13-EDIT_OVER_WHITESPACE

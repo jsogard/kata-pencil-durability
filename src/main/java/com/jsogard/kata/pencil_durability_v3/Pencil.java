@@ -59,11 +59,14 @@ public class Pencil {
 	}
 
 	public void erase(Paper paper, String eraseString) {
-		int end = paper.getText().lastIndexOf(eraseString);
+		int end = paper.getText().lastIndexOf(eraseString),
+				eraseCost;
 		if(end == -1) return;
 		int index = end + eraseString.length() - 1;
 		for(; index >= end; index--){
-			eraserDurability -= getEraseCost(paper.getText().charAt(index));
+			eraseCost = getEraseCost(paper.getText().charAt(index));
+			if(eraserDurability < eraseCost) return;
+			eraserDurability -= eraseCost;
 			paper.eraseCharacter(index);
 		}
 	}
