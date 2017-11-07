@@ -47,6 +47,10 @@ public class Pencil {
 		return Constants.WHITESPACE_WRITE_COST;
 	}
 
+	public void sharpen() {
+		pointDurability = initialPointDurability;
+	}
+
 	
 
 }

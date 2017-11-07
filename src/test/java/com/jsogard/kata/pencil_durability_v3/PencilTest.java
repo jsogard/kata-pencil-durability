@@ -102,6 +102,13 @@ public class PencilTest {
 	 * TC06-SHARPEN_POINT_DUR
 	 * When a pencil is sharpened, it regains its initial point durability
 	 */
+	@Test
+	public void sharpenPointDur(){
+		pencil.write(paper, "SHARPEN POINT DUR");
+		pencil.sharpen();
+		
+		Assert.assertEquals(initialPointDurability, pencil.getPointDurability());
+	}
 	
 	/*
 	 * TC07-SHARPEN_REDUCE_LENGTH
