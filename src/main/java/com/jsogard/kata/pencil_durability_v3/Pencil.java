@@ -46,6 +46,11 @@ public class Pencil {
 		if(Character.isLowerCase(ch)) return Constants.LOWER_CASE_WRITE_COST;
 		return Constants.WHITESPACE_WRITE_COST;
 	}
+	
+	private int getEraseCost(char ch){
+		if(Character.isWhitespace(ch)) return Constants.WHITESPACE_ERASE_COST;
+		return Constants.CHARACTER_ERASE_COST;
+	}
 
 	public void sharpen() {
 		if(length == 0) return;
@@ -58,8 +63,13 @@ public class Pencil {
 		if(end == -1) return;
 		int index = end + eraseString.length() - 1;
 		for(; index >= end; index--){
+			eraserDurability -= getEraseCost(paper.getText().charAt(index));
 			paper.eraseCharacter(index);
 		}
+	}
+
+	public void erase(Paper paper, char c) {
+		erase(paper, Character.toString(c));
 	}
 
 	

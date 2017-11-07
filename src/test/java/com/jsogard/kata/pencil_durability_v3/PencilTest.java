@@ -12,7 +12,7 @@ public class PencilTest {
 	
 	private int initialPointDurability = 200;
 	private int initialLength = 10;
-	private int initialEraserDurability = 10;
+	private int initialEraserDurability = 60;
 	
 	/* 
 	 * TC01-PENCIL_INIT
@@ -140,6 +140,20 @@ public class PencilTest {
 	 * all characters except for white space should degrade the eraser by a value of one
 	 * e.g. erasing whitespace characters should not degrade eraser
 	 */
+	@Test
+	public void eraserdegWhitespace(){
+		int eraserDurabilityBefore,
+			eraseCost = 0;
+		String initialString =new String(Constants.WHITESPACE_CHARACTERS); 
+		pencil.write(paper, initialString);
+		
+		for(char c : Constants.WHITESPACE_CHARACTERS){
+			eraserDurabilityBefore = pencil.getEraserDurability();
+			pencil.erase(paper, c);
+			
+			Assert.assertEquals(eraserDurabilityBefore - eraseCost, pencil.getEraserDurability());
+		}
+	}
 	
 	/*
 	 * TC11-ERASERDEG_CHARACTER

@@ -9,5 +9,8 @@ public class Constants {
 	public static final char[] WHITESPACE_CHARACTERS = " \n".toCharArray();
 	public static final char[] LOWERCASE_CHARACTERS = "qwertyuiopasdfghjklzxcvnmb".toCharArray();
 	public static final char[] UPPERCASE_CHARACTERS = "QWERTYUIOPAFSDGHJKLVZXCBNM".toCharArray();
+	
+	public static final int CHARACTER_ERASE_COST = 1;
+	public static final int WHITESPACE_ERASE_COST = 0;
 
 }
