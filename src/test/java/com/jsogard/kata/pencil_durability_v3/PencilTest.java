@@ -58,6 +58,15 @@ public class PencilTest {
 	 * TC03-POINTDEG_WHITESPACE_WRITE
 	 * Writing spaces and newlines expends no graphite; therefore these characters should not affect the pencil point
 	 */
+	@Test
+	public void pointdegWhitespaceWrite(){
+		int pointDurabilityBefore,
+			expectedCost = 0;
+		for(char c : Constants.WHITESPACE_CHARACTERS){
+			pointDurabilityBefore = pencil.getPointDurability();
+			Assert.assertEquals(pointDurabilityBefore - expectedCost, pencil.getPointDurability());
+		}
+	}
 	
 	/*
 	 * TC04-POINTDEG_LOWERCASE_WRITE
