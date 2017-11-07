@@ -7,5 +7,6 @@ public class Constants {
 	public static final int WHITESPACE_WRITE_COST = 0;
 	
 	public static final char[] WHITESPACE_CHARACTERS = " \n".toCharArray();
+	public static final char[] LOWERCASE_CHARACTERS = "qwertyuiopasdfghjklzxcvnmb".toCharArray();
 
 }

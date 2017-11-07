@@ -53,7 +53,6 @@ public class PencilTest {
 		Assert.assertEquals(initialEraserDurability, pencil.getEraserDurability());
 	}
 	
-	
 	/*
 	 * TC03-POINTDEG_WHITESPACE_WRITE
 	 * Writing spaces and newlines expends no graphite; therefore these characters should not affect the pencil point
@@ -62,8 +61,9 @@ public class PencilTest {
 	public void pointdegWhitespaceWrite(){
 		int pointDurabilityBefore,
 			expectedCost = 0;
-		for(char c : Constants.WHITESPACE_CHARACTERS){
+		for(char character : Constants.WHITESPACE_CHARACTERS){
 			pointDurabilityBefore = pencil.getPointDurability();
+			pencil.write(paper, character);
 			Assert.assertEquals(pointDurabilityBefore - expectedCost, pencil.getPointDurability());
 		}
 	}
@@ -72,6 +72,16 @@ public class PencilTest {
 	 * TC04-POINTDEG_LOWERCASE_WRITE
 	 * Lowercase letters should degrade the pencil point by a value of one
 	 */
+	@Test
+	public void pointdegLowercaseWrite(){
+		int pointDurabilityBefore,
+			expectedCost = 1;
+		for(char character : Constants.LOWERCASE_CHARACTERS){
+			pointDurabilityBefore = pencil.getPointDurability();
+			pencil.write(paper, character);
+			Assert.assertEquals(pointDurabilityBefore - expectedCost, pencil.getPointDurability());
+		}
+	}
 	
 	/*
 	 * TC05-POINTDEG_UPPERCASE_WRITE

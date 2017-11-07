@@ -27,15 +27,18 @@ public class Pencil {
 	}
 
 	public void write(Paper paper, String string) {
-		int writeCost;
 		for(char character : string.toCharArray()){
-			writeCost = getWriteCost(character);
-			if(pointDurability < writeCost)
-				character = ' ';
-			else
-				pointDurability -= writeCost;
-			paper.appendCharacter(character);
+			write(paper, character);
 		}
+	}
+	
+	public void write(Paper paper, char character) {
+		int writeCost = getWriteCost(character);
+		if(pointDurability < writeCost)
+			character = ' ';
+		else
+			pointDurability -= writeCost;
+		paper.appendCharacter(character);
 	}
 	
 	private int getWriteCost(char ch){
@@ -43,5 +46,7 @@ public class Pencil {
 		if(Character.isLowerCase(ch)) return Constants.LOWER_CASE_WRITE_COST;
 		return Constants.WHITESPACE_WRITE_COST;
 	}
+
+	
 
 }
