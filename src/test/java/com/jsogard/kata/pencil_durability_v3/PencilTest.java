@@ -1,12 +1,18 @@
 package com.jsogard.kata.pencil_durability_v3;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
-public class PencilTest extends TestCase {
+import junit.framework.Assert;
 
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
+public class PencilTest {
+	
+	private Pencil pencil;
+	private Paper paper;
+	
+	private int initialPointDurability = 200;
+	private int initialLength = 10;
+	private int initialEraserDurability = 10;
 	
 	/* 
 	 * TC01-PENCIL_INIT
@@ -14,6 +20,39 @@ public class PencilTest extends TestCase {
 	 * A pencil should also be created with an initial length value.
 	 * When a pencil is created, it can be provided with a value for eraser durability
 	 */
+	@Before
+	public void pencilInit(){
+		pencil = new Pencil(initialPointDurability, initialLength, initialEraserDurability);
+		paper = new Paper();
+	}
+	
+	/*
+	 * TC01.1-PENCIL_INIT_POINTDUR
+	 * When a pencil is created, it can be provided with a value for point durability
+	 */
+	@Test
+	public void initialPointDurability(){
+		Assert.assertEquals(initialPointDurability, pencil.getPointDurability());
+	}
+	
+	/*
+	 * TC01.2-PENCIL_INIT_LENGTH
+	 * A pencil should also be created with an initial length value.
+	 */
+	@Test
+	public void initialLength(){
+		Assert.assertEquals(initialLength, pencil.getLength());
+	}
+	
+	/*
+	 * TC01.3-PENCIL_INIT_ERASERDUR
+	 * When a pencil is created, it can be provided with a value for eraser durability
+	 */
+	@Test
+	public void initialEraserDurability(){
+		Assert.assertEquals(initialEraserDurability, pencil.getEraserDurability());
+	}
+	
 	
 	/*
 	 * TC03-POINTDEG_WHITESPACE_WRITE
