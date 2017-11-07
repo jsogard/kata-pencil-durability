@@ -20,6 +20,3 @@ mvn clean package
 ```
 and it should tell you where the jar it created is.
 I'm not super familiar with Maven, so if there are problems, just let me know. I porbably just screwed up the gitignore or something.
-
-### Who is the glorious programmer that made this?
-Just me, it's no biggie. Oh oops, looks like I accidentally dropped my resume in this folder! Silly me...
